@@ -1,0 +1,21 @@
+this what pydantic expects we run a query : 
+class respond_post(BaseModel): #so here we define the schema of our respond to the client while the previous ones were for setting the schema of request
+title: str
+content: str
+published: bool
+created_at: datetime     
+owner_id: int
+owner: User_response # User_response should be above our class so that this line of code can recognize it
+
+[
+    {
+        "title": "smt",
+        "content": "good\n",
+        "published": true,
+        "created_at": "2024-03-01T21:38:59.299025+01:00",
+        "owner_id": 5,
+        "owner": {
+            "id": 5,
+            "email": "bana@gmail.com"
+        }
+    }

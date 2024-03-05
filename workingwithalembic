@@ -1,0 +1,27 @@
+Here's what Alembic is used for:
+
+Database Migrations: Alembic helps manage changes to your database schema over time, including creating and altering tables, adding or removing columns, and modifying constraints or indexes.
+
+Version Control: Alembic keeps track of the changes you make to your database schema by generating migration scripts that represent the incremental changes between different versions of the schema.
+
+Synchronization: It allows developers to synchronize the database schema with the application's data models, ensuring that the database structure matches the defined models.
+
+Collaboration: Alembic enables collaboration among team members by providing a versioned history of database schema changes, allowing multiple developers to work on the same database schema concurrently.
+
+Rollbacks: In case of errors or issues with a migration, Alembic supports rolling back changes, reverting the database schema to a previous state.
+
+what we did:
+-we installed the library of alembic , pip install alembic
+-alembic init alembic     After running this command, you'll find a directory named "alembic" in your current directory (C:\Users\baygu\fastapi), containing the necessary files and directories for managing database migrations with Alembic
+-alembic revision -m "create posts table"     After running this command, Alembic will generate a new revision file in the alembic/versions directory of your Alembic project. This file will contain the migration instructions needed to create a "posts" table in your database. , it creates the it under version  folder which is under the alembic folder, it will contain all of our changes
+-we passed in some values to the functions upgrade and downgrade in our create_posts_table.py file
+-when we wanna run it we will write to command prompt:  alembic upgrade 204f5020b163 (this is the revision id) or we can say alembic upgrade head   so this will automatically update the latest version(id)
+- and when we wanna add columns to our table that we created through alembic we go to our command prompt and type in:  alembic revision - m "add <name of the column we wanna add>column to <name of the table we are adding to>table" 
+so the prompt above will open a new file and there we should go to upgrade section and pass in op.add_column(...) and to the downgrade op.drop_column(...)  btw we pass in some values to ... but checkout ı did not type in here
+when we are over with it we go to command prompt and run the latest version to update it on postgresql  
+-to undo the changes we can use:   alembic downgrade -1   so this would undo changes 1 time if we say 2 it will undo 2 times and so on or we can write alembic downgrade <downgrade revision id>
+
+-if we wanna build a relation between two tables so it means we have to add foregin key and for that we created a table called newusers and we will relate it with posts table :  alembic revision -m"add foreign-key to newposts table"   so this will open a file and there
+and in this will we will create a column and specificiy the foreign key and build the relation between two tables (this file is add_foreign_key... you can go there and check what we did) 
+
+-alembic revision --autogenerate -m "auto-vote"   will compare the files we created through alembic with tables we created through alchemy in the model.py file and will make the modifictaions neccesary on alembic to match it with alchemy

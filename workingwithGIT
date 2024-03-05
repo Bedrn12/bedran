@@ -1,0 +1,23 @@
+so to track our code and store our code we will work with github:
+
+but to ensure that not all of our files checking in github that carries confidential information we created a file and named .gitignore 
+so go there and see what we included
+
+
+then on command prompt we run "pip freeze"  which shows the list of packages we installed , so we gonna create a new file which will contain all of them so that the github users can see what packages are needed for these codes to work,the code we run on cd: 
+pip freeze > requirements.txt
+
+so anyone that goes to this file requirements.txt instead of installing one by one they can just type to command prompt and install them all at one click : pip install -r requirements.txt
+
+so we downloaded git to our computer
+
+we went to our github accout that we signed in and create repository
+to initialize git on our project folder we type in the following commands to command prompt window: 
+
+git init
+git add --all
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Bedrn12/bedran.git
+git push -u origin main
+

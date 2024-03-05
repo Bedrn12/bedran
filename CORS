@@ -1,0 +1,17 @@
+So, the issue we're facing is related to CORS, which stands for Cross-Origin Resource Sharing. CORS allows web browsers to make requests from one domain to a server on a different domain. However, by default, when you set up an API, like in FastAPI or any other framework, the browser only allows requests from the same domain as the server.
+
+Imagine your API is hosted on google.com, but your website is on eBay.com. By default, eBay.com can't send requests to the API on google.com because of CORS restrictions. However, if both your website and API are on the same domain, like both on google.com, they can communicate without any issues.
+
+we copied and pasted to our main file:  from fastapi.middleware.cors import CORSMiddleware
+
+originis = ['...'] whatever domain we want our server to talk we can specificy within ...
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+so by typing these lines of codes our server will respond to different domain names that is not necessarily hosted in our server

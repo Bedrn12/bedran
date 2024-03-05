@@ -1,0 +1,33 @@
+JWT token authentication :authentication system
+
+ant time when user(client) logs in he enters his credentials such as username , password  
+if the API verify the credentials it signs the user and generates JWT token which is sort of like string
+then token is sent back to the client 
+so then evertime user can access resources from apı that requires authentication by having this jwt token
+our fastapi verifies that token is valid
+if it is valid then apı sends back the data
+
+
+token is not encyrpted , it is writen in base64 format
+
+token consists of 3 parts:
+- Header that specifies the algorithm, token type etc.
+- Payload: Data   so this might be user data such as:            this is sort of data we send to apı to verify our data for specific resources such that it either accepts or denies
+"sub": "123456789"
+"name":"Bedran"
+ 
+ for the payload we should not put any secret information as it is not encrypted as we said before  ,  put common things to the payload
+ - Verify signature: it is combination of our header , payload and we pass in a secret key which we keep in our api(so the clients and nobody won't know it it is called your-256-bits-secret)   so verify signature returns  signature as a result of combination of these things
+
+ so anyone can chnage the data of token , generate new token but cant acces the signature(private key) so they can never validate it bcz only apı server and validation serves has acces to private key
+
+
+
+
+ user provides its email and password to login   to API then the API communicates with our database server and finds the user by email from database , once found the database sends the password  to the API in hashed format bcz ıt was already stored hashed. as we can not reverse hashing to raw format we hash the password which the user provided in raw format and compare with our hashed password in database if they match  then if they match the API provides user the token 
+
+
+we installed pip install "python-jose[cryptography]"     to generate and verify the JWT tokens in Python
+
+
+if we go to website of jwt we can decode our encoded token that we create 
